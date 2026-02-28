@@ -1,44 +1,75 @@
-# To-Do List (Lista de Tarefas) ✅
+# ToDo List API ✅
 
-Este é o meu projeto de uma API para gerenciar tarefas. Eu desenvolvi esse código para estudar **Java** e **Spring Boot**.
+API REST desenvolvida em **Java** e **Spring Boot** para gerenciamento de tarefas pessoais.
 
-O objetivo do sistema é permitir que um usuário se cadastre e crie suas tarefas, definindo prioridade e datas.
-
-## 🔨 Tecnologias que usei
-
-* **Java 17**
-* **Spring Boot** (Para criar a API)
-* **H2 Database** (Banco de dados que roda na memória)
-* **Lombok** (Para diminuir a repetição de código)
-* **Docker** (Para facilitar o deploy)
-* **Render** (Onde o site está hospedado)
-
-## 🔒 Segurança e Autenticação
-
-Para proteger os dados, implementei um sistema de segurança:
-
-1.  **Criptografia:** Usei a biblioteca **BCrypt** para transformar a senha do usuário em um código seguro (hash) antes de salvar no banco.
-2.  **Autenticação:** Usei o padrão **Basic Auth**. Para criar ou listar tarefas, é necessário enviar o usuário e senha no cabeçalho da requisição.
-
-## ⚙️ O que o sistema faz?
-
-1.  **Usuários:**
-    * Qualquer pessoa pode criar uma conta.
-    * O sistema valida se o nome de usuário já existe.
-
-2.  **Tarefas:**
-    * Só usuários cadastrados e autenticados podem criar tarefas.
-    * A tarefa tem título, descrição, data de início/fim e prioridade.
-    * O sistema valida as datas (ex: não permite terminar uma tarefa antes de começar).
-
-## 🧪 Como testar (Apidog)
-
-Eu utilizei o **Apidog** para testar todas as rotas da API. Você pode usar ele (ou o Postman) para testar os endpoints:
-
-* **POST** `/users/` -> Cria um usuário.
-* **POST** `/tasks/` -> Cria uma tarefa (Use a aba **Auth** > **Basic Auth** com seu usuário e senha).
-* **GET** `/tasks/` -> Lista suas tarefas (Use a aba **Auth** > **Basic Auth**).
-* **PUT** `/tasks/{id}` -> Altera uma tarefa (Use a aba **Auth** > **Basic Auth**).
+O sistema permite cadastro de usuários autenticados e controle de tarefas com definição de prioridade, datas e validações de regras de negócio.
 
 ---
-Feito com 💜 por **Camylla Oliveira**.
+
+## ⚙️ Tecnologias Utilizadas
+
+- Java 17
+- Spring Boot
+- Spring Data JPA
+- H2 Database
+- Lombok
+- Docker
+- Render (Deploy)
+
+---
+
+## 🔐 Segurança e Autenticação
+
+A API implementa mecanismos básicos de segurança:
+
+- Criptografia de senha utilizando **BCrypt**
+- Autenticação via **HTTP Basic Auth**
+- Proteção de endpoints restritos a usuários autenticados
+
+---
+
+## 🧩 Funcionalidades
+
+### 👤 Usuários
+- Cadastro de novos usuários
+- Validação de unicidade do username
+- Armazenamento seguro de senhas
+
+### ✅ Tarefas
+- CRUD completo de tarefas
+- Definição de prioridade
+- Controle de datas de início e término
+- Validação de regras de negócio (ex.: data final não pode ser anterior à inicial)
+- Acesso restrito por autenticação
+
+---
+
+## 🔄 Endpoints Principais
+
+| Método | Endpoint | Descrição |
+|---|---|---|
+| POST | `/users` | Criar usuário |
+| POST | `/tasks` | Criar tarefa |
+| GET | `/tasks` | Listar tarefas |
+| PUT | `/tasks/{id}` | Atualizar tarefa |
+
+---
+
+## 🧪 Testes da API
+
+Os endpoints podem ser testados utilizando:
+
+- Apidog
+- Postman
+- Insomnia
+
+Para rotas protegidas, utilize autenticação **Basic Auth**.
+
+---
+
+## 🚀 Executando o Projeto
+
+```bash
+git clone https://github.com/camylla-ops/todolist-java-springboot
+cd todolist-java-springboot
+./mvnw spring-boot:run
